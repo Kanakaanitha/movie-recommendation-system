@@ -25,19 +25,18 @@ def recommend(movie):
     )[1:6]
 
     recommended_movies = []
-    similarity_scores = []
 
     for i in movies_list:
         recommended_movies.append(movies.iloc[i[0]]['title'])
-        similarity_scores.append(round(i[1], 3))
 
-    return recommended_movies, similarity_scores
+    return recommended_movies
 
 
 # Button
 if st.button("Recommend"):
-    names, scores = recommend(selected_movie)
+    recommendation = recommend(selected_movie)
 
     st.subheader("Similar Movies:")
-    for name, score in zip(names, scores):
-        st.write(f"🎥 {name}  |  Similarity: {score}")
+    for movie in recommendation:
+        st.write(movie)
+        
